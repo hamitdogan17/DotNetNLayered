@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Northwind.Entities.Concrete;
 
-namespace Northwind.DataAccess.Concrete
+namespace Northwind.DataAccess.Concrete.EntityFramework
 {
     public class NorthwindContext:DbContext
     {

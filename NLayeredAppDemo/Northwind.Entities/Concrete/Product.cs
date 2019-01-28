@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Northwind.Entities.Concrete
 {
-    public class Product
+    public class Product:IEntitiy
     {
         public int ProductId { get; set; }
         public int CategoryId { get; set; }
