@@ -89,29 +89,44 @@ namespace Northwind.WebFormsUI
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            _productService.Update(new Product
+            try
             {
-                ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
-                ProductName = tbxProductNameUpdate.Text,
-                CategoryId = Convert.ToInt32(cbxCategoryIdUpdate.SelectedValue),
-                UnitsInStock = Convert.ToInt16(tbxStockUpdate.Text),
-                QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
-                UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text)
+                _productService.Update(new Product
+                {
+                    ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
+                    ProductName = tbxProductNameUpdate.Text,
+                    CategoryId = Convert.ToInt32(cbxCategoryIdUpdate.SelectedValue),
+                    UnitsInStock = Convert.ToInt16(tbxStockUpdate.Text),
+                    QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
+                    UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text)
 
-            });
+                });
 
-            MessageBox.Show("Ürün güncellendi.");
-            LoadProducts();
+                MessageBox.Show("Ürün güncellendi.");
+                LoadProducts();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+  
         }
 
         private void dgwProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = dgwProduct.CurrentRow?.Cells;
-            tbxProductNameUpdate.Text = row[2].Value.ToString();
-            cbxCategoryIdUpdate.SelectedValue = row[1].Value;
-            tbxUnitPriceUpdate.Text = row[3].Value.ToString();
-            tbxQuantityPerUnitUpdate.Text = row[4].Value.ToString();
-            tbxStockUpdate.Text = row[5].Value.ToString();
+            try
+            {
+                var row = dgwProduct.CurrentRow?.Cells;
+                tbxProductNameUpdate.Text = row[2].Value.ToString();
+                cbxCategoryIdUpdate.SelectedValue = row[1].Value;
+                tbxUnitPriceUpdate.Text = row[3].Value.ToString();
+                tbxQuantityPerUnitUpdate.Text = row[4].Value.ToString();
+                tbxStockUpdate.Text = row[5].Value.ToString();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
